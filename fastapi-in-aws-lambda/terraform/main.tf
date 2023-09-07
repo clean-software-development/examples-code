@@ -9,10 +9,6 @@ terraform {
 
 provider "aws" {
   region = var.REGION
-  skip_metadata_api_check     = true
-  skip_region_validation      = true
-  skip_credentials_validation = true
-  skip_requesting_account_id  = true  
 }
 
 variable "REGION" {
@@ -30,13 +26,11 @@ module "lambda_layer_poetry" {
   compatible_runtimes = ["python3.10"]
 
   source_path = [
-    # "${path.module}/../project/fastapi_in_aws_lambda",
     {
-      path           = "${path.module}/../project"
+      path           = "${path.root}/../project"
       poetry_install = true
     }
   ]
-  hash_extra = "extra-hash-to-prevent-conflicts-with-module.package_dir"
 
   build_in_docker = true
   runtime         = "python3.10"
@@ -57,17 +51,8 @@ module "lambda_function" {
   publish       = true
   create_lambda_function_url = true
 
-#   source_path   = "${path.module}/../project/fastapi_in_aws_lambda"
-  source_path = [
-    {
-      path             = "${path.module}../project"
-      pip_requirements = false
-      patterns = [
-      "fastapi_in_aws_lambda",
-      ]
-    }
-  ]
-  hash_extra  = "extra-hash-to-prevent-conflicts-with-module.package_dir"
+  source_path = "${path.root}/../project"
+
   artifacts_dir   = "${path.root}/builds/lambda_function/"
 
   build_in_docker = true
