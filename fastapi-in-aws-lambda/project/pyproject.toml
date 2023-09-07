@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "fastapi-in-aws-lambda"
+version = "0.1.0"
+description = ""
+authors = ["srault95 <stephane.rault@radicalspam.org>"]
+license = "MIT"
+packages = [
+    { include = "fastapi_in_aws_lambda" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.103.1"
+mangum = "^0.17.0"
+
+[tool.poetry.dev-dependencies]
+uvicorn = {extras = ["standard"], version = "^0.23.2"}
+pytest = "^7.4.1"
+httpx = "^0.24.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

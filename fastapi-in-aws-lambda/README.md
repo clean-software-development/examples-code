@@ -1,12 +1,16 @@
 # FastAPI dans une Lambda AWS
 
+> **Requis: Python 3.10 avec pip**
+
+Si vous ne disposez pas de Python 3.10 et vous souhaitez utiliser Terraform pour déployer, changer la version de python dans main.tf (maximum 3.10)
+
 ## Installation
 
 ```shell
-python3 -m venv .venv
+python3.10 -m venv .venv
 source .venv/bin/activate
 pip install -U pip wheel setuptools
-pip install -r requirements.txt
+pip install -r requirements-dev.txt
 ```
 
 ## Usage local
@@ -24,4 +28,11 @@ pytest test_app.py
 
 ## Déploiement sur AWS
 
-TODO...
+> **Requis: Compte AWS correctement configuré dans ~/.aws ou avec des variables d'environnement**
+
+```shell
+terraform init
+terraform validate
+terraform plan
+terraform apply
+```

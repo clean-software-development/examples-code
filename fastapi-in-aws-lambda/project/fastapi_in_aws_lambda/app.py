@@ -19,19 +19,19 @@ class ItemModel(BaseModel):
 
 
 @app.get("/")
-def home():
+async def home():
     return {"message": "ok"}
 
 
 @app.post("/item")
-def add_item(item: ItemModel = Body()):
+async def add_item(item: ItemModel = Body()):
     ITEMS.add(item)
     return {"message": "ok"}
 
 
 @app.get("/item", response_model=list[ItemModel])
-def get_items():
+async def get_items():
     return list(ITEMS)
 
     
-handler = Mangum(app, lifespan="off")
+lambda_handler = Mangum(app, lifespan="off")
