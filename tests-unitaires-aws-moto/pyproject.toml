@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "tests-unitaires-aws-moto"
+version = "0.1.0"
+description = ""
+authors = ["srault95 <stephane.rault@radicalspam.org>"]
+license = "MIT"
+packages = [
+    { include = "project" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+boto3 = "^1.28.44"
+boto3-stubs = {extras = ["dynamodb", "s3"], version = "^1.28.44"}
+pydantic = "^2.3.0"
+typer = "^0.9.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.4.1"
+moto = "^4.2.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+project-demo = 'project.cli:app'
