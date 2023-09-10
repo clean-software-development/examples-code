@@ -3,7 +3,7 @@ from fastapi import status as http_status
 from fastapi.testclient import TestClient
 
 
-from app import app, ItemModel, ITEMS
+from fastapi_in_aws_lambda.app import app, ItemModel, ITEMS
 
 
 @pytest.fixture
@@ -31,6 +31,7 @@ def test_add_item(test_app: TestClient):
 
 
 def test_get_items(test_app: TestClient, fake_items: list[ItemModel]):
+    
     ITEMS.update(fake_items)
 
     response = test_app.get(

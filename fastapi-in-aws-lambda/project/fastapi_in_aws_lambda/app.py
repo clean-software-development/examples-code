@@ -1,7 +1,6 @@
 from typing import Any
 
 from fastapi import FastAPI, Body
-from mangum import Mangum
 from pydantic import BaseModel
 
 app = FastAPI()
@@ -32,6 +31,3 @@ async def add_item(item: ItemModel = Body()):
 @app.get("/item", response_model=list[ItemModel])
 async def get_items():
     return list(ITEMS)
-
-    
-lambda_handler = Mangum(app, lifespan="off")

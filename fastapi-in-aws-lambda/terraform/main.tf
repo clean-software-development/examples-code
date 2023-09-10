@@ -46,7 +46,7 @@ module "lambda_function" {
 
   function_name = "fastapi-in-aws-lambda-function"
   description   = "FastAPI in AWS Lambda"
-  handler       = "fastapi_in_aws_lambda.app.lambda_handler"
+  handler       = "fastapi_in_aws_lambda.handler.handler"
   runtime       = "python3.10"
   publish       = true
   create_lambda_function_url = true
